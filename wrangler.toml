@@ -1,0 +1,6 @@
+name = "t-shirt-customizer"
+compatibility_date = "2023-01-01"
+main = "index.html"
+
+[site]
+bucket = "." 

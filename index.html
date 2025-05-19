@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>T-Shirt Customizer</title>
+  <link rel="stylesheet" href="./src/styles.css">
+</head>
+<body class="theme-dark">
+  <div class="container">
+    <div class="app-header">
+      <h1>3D T-Shirt Customizer</h1>
+      <p class="theme-hint">Press Alt + Q to switch themes</p>
+    </div>
+    
+    <div class="customizer">
+      <div class="left-panel">
+        <div class="image-preview">
+          <div class="main-image">
+            <!-- Main image to be printed will go here -->
+            <img id="print-image" src="./assets/placeholder.jpg" alt="Image to print">
+          </div>
+        </div>
+        
+        <div class="text-input">
+          <label for="custom-text">Custom Text for T-Shirt (max 3 lines)</label>
+          <textarea id="custom-text" maxlength="100" rows="3" placeholder="Enter text to print on your shirt"></textarea>
+        </div>
+        
+        <div class="file-upload">
+          <label for="image-upload">Upload Your Image</label>
+          <input type="file" id="image-upload" accept="image/*">
+          <div id="drop-area">
+            <p>Or drag and drop your image here</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="right-panel">
+        <div class="product-type">
+          <h3>Product Type</h3>
+          <button popovertarget="product-pop">
+            <span>Type:</span>
+            <span id="selected-product">T-Shirt</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+            </svg>
+          </button>
+          <div id="product-pop" popover="auto">
+            <div class="popover__content">
+              <ul>
+                <li>
+                  <button data-value="T-Shirt" data-selected="true" popovertarget="product-pop">
+                    T-Shirt
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button data-value="Hoodie" popovertarget="product-pop">
+                    Hoodie
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button data-value="Sleevie" popovertarget="product-pop">
+                    Sleevie
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                    </svg>
+                  </button>
+                </li>
+                <li>
+                  <button data-value="Cap" popovertarget="product-pop">
+                    Cap
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                    </svg>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="size-options">
+          <h3>Size Options</h3>
+          
+          <div class="size-option">
+            <label for="height">Height:</label>
+            <div class="input-group">
+              <input type="number" id="height" value="180" min="100" max="250">
+              <span class="unit">cm</span>
+            </div>
+          </div>
+          
+          <div class="size-option">
+            <label for="weight">Weight:</label>
+            <div class="input-group">
+              <input type="number" id="weight" value="80" min="30" max="200">
+              <span class="unit">kg</span>
+            </div>
+          </div>
+          
+          <div class="size-option">
+            <label for="build-pop-btn">Build:</label>
+            <button id="build-pop-btn" popovertarget="build-pop">
+              <span id="selected-build">Athletic</span>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 15 12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" />
+              </svg>
+            </button>
+            <div id="build-pop" popover="auto">
+              <div class="popover__content">
+                <ul>
+                  <li>
+                    <button data-value="Lean" popovertarget="build-pop">
+                      Lean
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                      </svg>
+                    </button>
+                  </li>
+                  <li>
+                    <button data-value="Regular" popovertarget="build-pop">
+                      Regular
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                      </svg>
+                    </button>
+                  </li>
+                  <li>
+                    <button data-value="Athletic" data-selected="true" popovertarget="build-pop" autofocus>
+                      Athletic
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                      </svg>
+                    </button>
+                  </li>
+                  <li>
+                    <button data-value="Big" popovertarget="build-pop">
+                      Big
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                      </svg>
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="tshirt-preview">
+          <h3>Preview</h3>
+          <div id="threejs-container"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/DRACOLoader.js"></script>
+  <script src="./src/app.js" type="module"></script>
+</body>
+</html> 
