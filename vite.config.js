@@ -4,16 +4,22 @@ import { resolve } from 'path';
 export default defineConfig({
   build: {
     outDir: 'dist',
+    assetsDir: 'assets',
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html')
+      },
+      output: {
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
+        assetFileNames: 'assets/[ext]/[name]-[hash].[ext]'
       }
     }
   },
   server: {
     open: true
   },
-  base: './',
+  base: '',
   publicDir: 'public',
   resolve: {
     alias: {
