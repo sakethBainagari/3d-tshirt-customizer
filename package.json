@@ -2,14 +2,14 @@
   "name": "t-shirt-customizer",
   "version": "1.0.0",
   "description": "A t-shirt customization web application",
+  "type": "module",
   "main": "index.html",
   "scripts": {
-    "start": "vite",
+    "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "deploy": "wrangler pages deploy dist"
+    "build-storybook": "storybook build"
   },
   "keywords": [
     "t-shirt",
