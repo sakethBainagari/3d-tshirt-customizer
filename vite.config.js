@@ -1,30 +1,43 @@
 import { defineConfig } from 'vite';
-import { resolve } from 'path';
+import { fileURLToPath, URL } from 'url';
+
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 export default defineConfig({
+  base: './', // Important for Cloudflare Pages
   build: {
     outDir: 'dist',
-    assetsDir: 'assets',
+    emptyOutDir: true,
+    target: 'esnext',
+    minify: 'esbuild',
+    sourcemap: true,
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html')
+        main: fileURLToPath(new URL('./index.html', import.meta.url))
       },
       output: {
-        chunkFileNames: 'assets/js/[name]-[hash].js',
-        entryFileNames: 'assets/js/[name]-[hash].js',
-        assetFileNames: 'assets/[ext]/[name]-[hash].[ext]'
+        entryFileNames: 'assets/[name].[hash].js',
+        chunkFileNames: 'assets/[name].[hash].js',
+        assetFileNames: 'assets/[name].[hash][ext]'
       }
     }
   },
   server: {
-    open: true
+    port: 3000,
+    open: true,
+    fs: {
+      strict: true,
+    },
   },
-  base: '',
   publicDir: 'public',
   resolve: {
     alias: {
       '@': resolve(__dirname, './src'),
-      '@assets': resolve(__dirname, './assets')
-    }
-  }
-}); 
+      '@assets': resolve(__dirname, './assets'),
+    },
+  },
+  plugins: [],
+  optimizeDeps: {
+    include: ['lit', '@lit/reactive-element', '@lit-labs/ssr-client'],
+  },
+});
